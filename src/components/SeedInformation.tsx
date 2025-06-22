@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Seed, Sun, Droplets, Calendar, Users, Bug, AlertTriangle } from "lucide-react";
+import { Sprout, Sun, Droplets, Calendar, Users, Bug, AlertTriangle } from "lucide-react";
 import { getSeedData, getPlantingCalendar, SeedData } from "@/services/seedService";
 
 interface SeedInformationProps {
@@ -59,7 +59,7 @@ const SeedInformation: React.FC<SeedInformationProps> = ({ seedId = "tomato-cher
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-8">
             <div className="flex items-center justify-center mb-4">
-              <Seed className="h-8 w-8 text-farm-green-500 mr-3" />
+              <Sprout className="h-8 w-8 text-farm-green-500 mr-3" />
               <h2 className="font-playfair text-3xl font-bold text-farm-green-700">
                 {seedData.name}
               </h2>
