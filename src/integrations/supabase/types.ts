@@ -9,24 +9,224 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      products: {
+      cart_items: {
         Row: {
-          description: string
-          id: number
-          name: string
-          price: number
+          created_at: string | null
+          id: string
+          product_id: number | null
+          quantity: number
+          user_id: string | null
         }
         Insert: {
-          description: string
-          id?: number
-          name: string
-          price: number
+          created_at?: string | null
+          id?: string
+          product_id?: number | null
+          quantity?: number
+          user_id?: string | null
         }
         Update: {
-          description?: string
+          created_at?: string | null
+          id?: string
+          product_id?: number | null
+          quantity?: number
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cart_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      contact_messages: {
+        Row: {
+          created_at: string | null
+          email: string
+          id: string
+          message: string
+          name: string
+        }
+        Insert: {
+          created_at?: string | null
+          email: string
+          id?: string
+          message: string
+          name: string
+        }
+        Update: {
+          created_at?: string | null
+          email?: string
+          id?: string
+          message?: string
+          name?: string
+        }
+        Relationships: []
+      }
+      newsletter_subscribers: {
+        Row: {
+          email: string
+          id: string
+          subscribed_at: string | null
+        }
+        Insert: {
+          email: string
+          id?: string
+          subscribed_at?: string | null
+        }
+        Update: {
+          email?: string
+          id?: string
+          subscribed_at?: string | null
+        }
+        Relationships: []
+      }
+      order_items: {
+        Row: {
+          created_at: string | null
+          id: string
+          order_id: string | null
+          price: number
+          product_id: number | null
+          quantity: number
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          order_id?: string | null
+          price: number
+          product_id?: number | null
+          quantity: number
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          order_id?: string | null
+          price?: number
+          product_id?: number | null
+          quantity?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "order_items_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "order_items_product_id_fkey"
+            columns: ["product_id"]
+            isOneToOne: false
+            referencedRelation: "products"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          created_at: string | null
+          id: string
+          shipping_address: string | null
+          status: string | null
+          total_amount: number
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          shipping_address?: string | null
+          status?: string | null
+          total_amount: number
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          shipping_address?: string | null
+          status?: string | null
+          total_amount?: number
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      products: {
+        Row: {
+          category: string | null
+          created_at: string | null
+          description: string
+          featured: boolean | null
+          id: number
+          image_url: string | null
+          name: string
+          price: number
+          stock_quantity: number | null
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string | null
+          description: string
+          featured?: boolean | null
           id?: number
+          image_url?: string | null
+          name: string
+          price: number
+          stock_quantity?: number | null
+        }
+        Update: {
+          category?: string | null
+          created_at?: string | null
+          description?: string
+          featured?: boolean | null
+          id?: number
+          image_url?: string | null
           name?: string
           price?: number
+          stock_quantity?: number | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          address: string | null
+          city: string | null
+          created_at: string | null
+          email: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          state: string | null
+          updated_at: string | null
+          zip_code: string | null
+        }
+        Insert: {
+          address?: string | null
+          city?: string | null
+          created_at?: string | null
+          email: string
+          full_name?: string | null
+          id: string
+          phone?: string | null
+          state?: string | null
+          updated_at?: string | null
+          zip_code?: string | null
+        }
+        Update: {
+          address?: string | null
+          city?: string | null
+          created_at?: string | null
+          email?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          state?: string | null
+          updated_at?: string | null
+          zip_code?: string | null
         }
         Relationships: []
       }
