@@ -5,7 +5,7 @@ export interface SeedData {
   variety: string;
   plantingDepth: string;
   spacing: string;
-  daysToGermination: number;
+  daysToGermination: string;
   daysToMaturity: number;
   sunRequirement: string;
   soilType: string;
@@ -32,7 +32,7 @@ export const getSeedData = async (seedId: string): Promise<SeedData> => {
       variety: "Heirloom Indeterminate",
       plantingDepth: "1/4 inch",
       spacing: "24-36 inches apart",
-      daysToGermination: 7-14,
+      daysToGermination: "7–14",
       daysToMaturity: 80,
       sunRequirement: "Full Sun (6-8 hours)",
       soilType: "Well-draining, rich loam",

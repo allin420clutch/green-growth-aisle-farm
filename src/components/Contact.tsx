@@ -1,8 +1,7 @@
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import ContactForm from "@/components/contact/ContactForm";
+import NewsletterForm from "@/components/newsletter/NewsletterForm";
 
 const Contact = () => {
   return (
@@ -22,58 +21,7 @@ const Contact = () => {
             {/* Contact Form */}
             <Card className="bg-white rounded-2xl shadow-lg">
               <CardContent className="p-8">
-                <h3 className="font-playfair text-2xl font-semibold text-farm-green-700 mb-6">
-                  Send us a Message
-                </h3>
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="firstName" className="block text-farm-brown-700 font-medium mb-2">
-                        First Name
-                      </label>
-                      <Input 
-                        id="firstName" 
-                        placeholder="Your first name"
-                        className="rounded-lg border-farm-brown-200"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="lastName" className="block text-farm-brown-700 font-medium mb-2">
-                        Last Name
-                      </label>
-                      <Input 
-                        id="lastName" 
-                        placeholder="Your last name"
-                        className="rounded-lg border-farm-brown-200"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-farm-brown-700 font-medium mb-2">
-                      Email Address
-                    </label>
-                    <Input 
-                      id="email" 
-                      type="email"
-                      placeholder="your.email@example.com"
-                      className="rounded-lg border-farm-brown-200"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="message" className="block text-farm-brown-700 font-medium mb-2">
-                      Message
-                    </label>
-                    <Textarea 
-                      id="message"
-                      placeholder="Tell us how we can help you..."
-                      rows={4}
-                      className="rounded-lg border-farm-brown-200"
-                    />
-                  </div>
-                  <Button className="w-full rounded-full bg-farm-green-600 hover:bg-farm-green-700">
-                    Send Message
-                  </Button>
-                </form>
+                <ContactForm />
               </CardContent>
             </Card>
 
@@ -122,14 +70,8 @@ const Contact = () => {
                   <p className="text-farm-green-100 mb-6">
                     Get weekly updates on fresh harvests, seasonal tips, and special offers!
                   </p>
-                  <div className="flex gap-2">
-                    <Input 
-                      placeholder="Enter your email"
-                      className="rounded-lg bg-white border-0"
-                    />
-                    <Button variant="secondary" className="rounded-lg bg-white text-farm-green-600 hover:bg-farm-cream-100">
-                      Subscribe
-                    </Button>
+                  <div className="flex justify-center">
+                    <NewsletterForm />
                   </div>
                 </CardContent>
               </Card>

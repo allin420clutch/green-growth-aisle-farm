@@ -1,7 +1,14 @@
 
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Leaf, Carrot } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
+import { useCart } from "@/hooks/useCart";
+import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import AuthModal from "@/components/auth/AuthModal";
 
 const FeaturedProducts = () => {
   const featuredProduce = [
@@ -46,6 +53,39 @@ const FeaturedProducts = () => {
     }
   ];
 
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const { addToCart } = useCart();
+  const { toast } = useToast();
+  const [authOpen, setAuthOpen] = useState(false);
+
+  const handleAddToCart = async (productName: string) => {
+    if (!user) {
+      setAuthOpen(true);
+      return;
+    }
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('id')
+        .ilike('name', `%${productName}%`)
+        .limit(1)
+        .maybeSingle();
+
+      if (error) throw error;
+
+      if (data?.id) {
+        await addToCart(Number(data.id));
+        toast({ title: 'Added to cart', description: `${productName} added to your cart.` });
+      } else {
+        toast({ title: 'Browse catalog', description: 'Find this item in the full catalog.' });
+        navigate('/products');
+      }
+    } catch (e: any) {
+      toast({ title: 'Error', description: 'Unable to add item. Please try from the catalog.', variant: 'destructive' });
+    }
+  };
+
   return (
     <section className="py-16 bg-farm-cream-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,7 +120,7 @@ const FeaturedProducts = () => {
                   <p className="text-farm-brown-600 mb-3">{product.description}</p>
                   <div className="flex justify-between items-center">
                     <span className="text-2xl font-bold text-farm-green-600">{product.price}</span>
-                    <Button className="rounded-full bg-farm-green-600 hover:bg-farm-green-700">
+                    <Button onClick={() => handleAddToCart(product.name)} className="rounded-full bg-farm-green-600 hover:bg-farm-green-700">
                       Add to Cart
                     </Button>
                   </div>
@@ -127,7 +167,7 @@ const FeaturedProducts = () => {
                   <p className="text-farm-brown-600 mb-3">{product.description}</p>
                   <div className="flex justify-between items-center">
                     <span className="text-2xl font-bold text-farm-green-600">{product.price}</span>
-                    <Button className="rounded-full bg-farm-green-600 hover:bg-farm-green-700">
+                    <Button onClick={() => handleAddToCart(product.name)} className="rounded-full bg-farm-green-600 hover:bg-farm-green-700">
                       Add to Cart
                     </Button>
                   </div>

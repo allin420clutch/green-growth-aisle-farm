@@ -18,12 +18,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
       setLoading(false);
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    // Initialize session after setting listener to avoid race conditions
+    supabase.auth.getSession().then(({ data: { session } }) => {
       setUser(session?.user ?? null);
       setLoading(false);
     });
@@ -41,6 +42,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       email,
       password,
       options: {
+        emailRedirectTo: window.location.origin,
         data: {
           full_name: fullName,
         },
@@ -48,7 +50,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     });
     if (error) throw error;
   };
-
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
