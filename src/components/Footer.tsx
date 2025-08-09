@@ -1,6 +1,6 @@
 
 import { Leaf } from "lucide-react";
-
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-farm-green-800 text-farm-green-100">
@@ -19,13 +19,13 @@ const Footer = () => {
               and finest seeds with three generations of farming expertise.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-farm-green-300 hover:text-white transition-colors">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-farm-green-300 hover:text-white transition-colors" aria-label="Visit our Facebook page">
                 Facebook
               </a>
-              <a href="#" className="text-farm-green-300 hover:text-white transition-colors">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-farm-green-300 hover:text-white transition-colors" aria-label="Visit our Instagram profile">
                 Instagram
               </a>
-              <a href="#" className="text-farm-green-300 hover:text-white transition-colors">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-farm-green-300 hover:text-white transition-colors" aria-label="Visit our Twitter profile">
                 Twitter
               </a>
             </div>
@@ -35,11 +35,11 @@ const Footer = () => {
           <div>
             <h3 className="font-playfair text-lg font-semibold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#home" className="text-farm-green-300 hover:text-white transition-colors">Home</a></li>
-              <li><a href="#produce" className="text-farm-green-300 hover:text-white transition-colors">Fresh Produce</a></li>
-              <li><a href="#seeds" className="text-farm-green-300 hover:text-white transition-colors">Seeds & Plants</a></li>
-              <li><a href="#about" className="text-farm-green-300 hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#contact" className="text-farm-green-300 hover:text-white transition-colors">Contact</a></li>
+              <li><Link to="/#home" className="text-farm-green-300 hover:text-white transition-colors">Home</Link></li>
+              <li><Link to="/#produce" className="text-farm-green-300 hover:text-white transition-colors">Fresh Produce</Link></li>
+              <li><Link to="/#seeds" className="text-farm-green-300 hover:text-white transition-colors">Seeds & Plants</Link></li>
+              <li><Link to="/#about" className="text-farm-green-300 hover:text-white transition-colors">About Us</Link></li>
+              <li><Link to="/#contact" className="text-farm-green-300 hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 

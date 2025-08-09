@@ -5,7 +5,7 @@ import ProductCard from './ProductCard';
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Search } from "lucide-react";
-
+import { useSearchParams } from 'react-router-dom';
 interface Product {
   id: number;
   name: string;
@@ -27,10 +27,17 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ onAuthRequired }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [loading, setLoading] = useState(true);
-
+  const [searchParams, setSearchParams] = useSearchParams();
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  useEffect(() => {
+    const cat = searchParams.get('category');
+    if (cat && cat !== selectedCategory) {
+      setSelectedCategory(cat);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     filterProducts();
@@ -92,7 +99,16 @@ const ProductCatalog: React.FC<ProductCatalogProps> = ({ onAuthRequired }) => {
               className="pl-9"
             />
           </div>
-          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+          <Select value={selectedCategory} onValueChange={(value) => {
+            setSelectedCategory(value);
+            const params = new URLSearchParams(searchParams);
+            if (value === 'all') {
+              params.delete('category');
+            } else {
+              params.set('category', value);
+            }
+            setSearchParams(params, { replace: true });
+          }}>
             <SelectTrigger className="w-full md:w-48">
               <SelectValue placeholder="Select category" />
             </SelectTrigger>

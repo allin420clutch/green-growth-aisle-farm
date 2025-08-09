@@ -1,7 +1,8 @@
 
 import { Button } from "@/components/ui/button";
-
+import { useNavigate } from "react-router-dom";
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section id="home" className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -32,6 +33,7 @@ const Hero = () => {
           <Button 
             size="lg" 
             className="rounded-full bg-farm-green-600 hover:bg-farm-green-700 text-white px-8 py-3 text-lg font-medium transition-all duration-300 hover:scale-105"
+            onClick={() => navigate('/products?category=produce')}
           >
             Shop Fresh Produce
           </Button>
@@ -39,6 +41,7 @@ const Hero = () => {
             size="lg" 
             variant="outline" 
             className="rounded-full border-2 border-white text-white hover:bg-white hover:text-farm-green-700 px-8 py-3 text-lg font-medium transition-all duration-300 hover:scale-105"
+            onClick={() => navigate('/products?category=seeds')}
           >
             Explore Seeds
           </Button>

@@ -130,7 +130,7 @@ const FeaturedProducts = () => {
           </div>
 
           <div className="text-center">
-            <Button size="lg" variant="outline" className="rounded-full border-farm-green-600 text-farm-green-600 hover:bg-farm-green-50">
+            <Button size="lg" variant="outline" className="rounded-full border-farm-green-600 text-farm-green-600 hover:bg-farm-green-50" onClick={() => navigate('/products?category=produce')}>
               View All Produce
             </Button>
           </div>
@@ -177,12 +177,13 @@ const FeaturedProducts = () => {
           </div>
 
           <div className="text-center">
-            <Button size="lg" variant="outline" className="rounded-full border-farm-green-600 text-farm-green-600 hover:bg-farm-green-50">
+            <Button size="lg" variant="outline" className="rounded-full border-farm-green-600 text-farm-green-600 hover:bg-farm-green-50" onClick={() => navigate('/products?category=seeds')}>
               Browse Seed Catalog
             </Button>
           </div>
         </div>
       </div>
+      <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} />
     </section>
   );
 };

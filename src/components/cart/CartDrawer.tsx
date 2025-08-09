@@ -1,20 +1,35 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShoppingCart, Plus, Minus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/useCart";
 import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
 
-const CartDrawer = () => {
+interface CartDrawerProps {
+  onAuthRequired?: () => void;
+}
+
+const CartDrawer: React.FC<CartDrawerProps> = ({ onAuthRequired }) => {
   const { items, totalPrice, totalItems, updateQuantity, removeFromCart } = useCart();
   const { user } = useAuth();
-
-  if (!user) return null;
+  const [open, setOpen] = useState(false);
+  const { toast } = useToast();
 
   return (
-    <Sheet>
+    <Sheet
+      open={open}
+      onOpenChange={(next) => {
+        if (next && !user) {
+          onAuthRequired?.();
+          toast({ title: "Please sign in", description: "Sign in to view your cart." });
+          setOpen(false);
+          return;
+        }
+        setOpen(next);
+      }}
+    >
       <SheetTrigger asChild>
         <Button variant="outline" size="sm" className="relative">
           <ShoppingCart className="h-4 w-4" />
@@ -76,7 +91,13 @@ const CartDrawer = () => {
                 <div className="flex justify-between text-lg font-semibold">
                   <span>Total: ${totalPrice.toFixed(2)}</span>
                 </div>
-                <Button className="w-full mt-4" size="lg">
+                <Button
+                  className="w-full mt-4"
+                  size="lg"
+                  onClick={() =>
+                    toast({ title: "Checkout coming soon", description: "We're working on it!" })
+                  }
+                >
                   Checkout
                 </Button>
               </div>

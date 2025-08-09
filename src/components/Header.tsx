@@ -36,17 +36,17 @@ const Header = () => {
               <Link to="/products" className="text-farm-brown-600 hover:text-farm-green-600 transition-colors">
                 Products
               </Link>
-              <a href="#about" className="text-farm-brown-600 hover:text-farm-green-600 transition-colors">
+              <Link to="/#about" className="text-farm-brown-600 hover:text-farm-green-600 transition-colors">
                 About
-              </a>
-              <a href="#contact" className="text-farm-brown-600 hover:text-farm-green-600 transition-colors">
+              </Link>
+              <Link to="/#contact" className="text-farm-brown-600 hover:text-farm-green-600 transition-colors">
                 Contact
-              </a>
+              </Link>
             </nav>
 
             {/* Auth and Cart */}
             <div className="flex items-center space-x-4">
-              <CartDrawer />
+              <CartDrawer onAuthRequired={() => setShowAuthModal(true)} />
               
               {user ? (
                 <Link to="/profile">
@@ -95,20 +95,20 @@ const Header = () => {
                 >
                   Products
                 </Link>
-                <a
-                  href="#about"
+                <Link
+                  to="/#about"
                   className="text-farm-brown-600 hover:text-farm-green-600 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   About
-                </a>
-                <a
-                  href="#contact"
+                </Link>
+                <Link
+                  to="/#contact"
                   className="text-farm-brown-600 hover:text-farm-green-600 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Contact
-                </a>
+                </Link>
               </div>
             </nav>
           )}
