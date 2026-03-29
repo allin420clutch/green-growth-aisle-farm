@@ -17,6 +17,37 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ onAuthRequired }) => {
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
 
+  const handleCheckout = async () => {
+    try {
+      toast({ title: "Initializing Checkout...", description: "Connecting to secure payment gateway." });
+
+      /* 
+       * TODO: Uncomment this when you deploy your Supabase Edge Function
+       *
+       * const { data, error } = await supabase.functions.invoke('create-checkout-session', {
+       *   body: { items }
+       * });
+       * if (error) throw error;
+       * 
+       * const stripe = await import('@/integrations/stripe/client').then(m => m.stripePromise);
+       * if (!stripe) throw new Error("Stripe failed to initialize.");
+       * 
+       * await stripe.redirectToCheckout({ sessionId: data.sessionId });
+       */
+
+      // Mock behavior until the backend is hooked up
+      setTimeout(() => {
+        toast({ 
+          title: "Action Required", 
+          description: "Stripe and Supabase keys must be added to .env to process real payments." 
+        });
+      }, 1500);
+
+    } catch (error: any) {
+      toast({ title: "Checkout Error", description: error.message, variant: "destructive" });
+    }
+  };
+
   return (
     <Sheet
       open={open}
@@ -94,9 +125,7 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ onAuthRequired }) => {
                 <Button
                   className="w-full mt-4"
                   size="lg"
-                  onClick={() =>
-                    toast({ title: "Checkout coming soon", description: "We're working on it!" })
-                  }
+                  onClick={handleCheckout}
                 >
                   Checkout
                 </Button>

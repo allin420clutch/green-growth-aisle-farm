@@ -11,47 +11,11 @@ import { supabase } from "@/integrations/supabase/client";
 import AuthModal from "@/components/auth/AuthModal";
 
 const FeaturedProducts = () => {
-  const featuredProduce = [
-    {
-      name: "Heritage Tomatoes",
-      price: "$4.99/lb",
-      image: "https://images.unsplash.com/photo-1518495973542-4542c06a5843?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "Vine-ripened heirloom varieties bursting with flavor"
-    },
-    {
-      name: "Fresh Leafy Greens",
-      price: "$3.49/bunch",
-      image: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "Crisp, nutrient-rich greens harvested daily"
-    },
-    {
-      name: "Seasonal Root Vegetables",
-      price: "$2.99/lb",
-      image: "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "Earth-fresh carrots, beets, and turnips"
-    }
-  ];
+  // Simulated data removed
+  const featuredProduce: any[] = [];
 
-  const featuredSeeds = [
-    {
-      name: "Heirloom Tomato Seeds",
-      price: "$3.99/packet",
-      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "Cherokee Purple & Brandywine varieties"
-    },
-    {
-      name: "Herb Garden Collection",
-      price: "$12.99/set",
-      image: "https://images.unsplash.com/photo-1517022812141-23620dba5c23?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "Basil, oregano, thyme, and parsley seeds"
-    },
-    {
-      name: "Wildflower Mix",
-      price: "$5.99/packet",
-      image: "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      description: "Native pollinator-friendly flower blend"
-    }
-  ];
+  // Simulated data removed
+  const featuredSeeds: any[] = [];
 
   const navigate = useNavigate();
   const { user } = useAuth();

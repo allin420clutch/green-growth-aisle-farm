@@ -37,23 +37,21 @@ const UserProfile = () => {
 
     setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', user.id)
-        .single();
-
-      if (error && error.code !== 'PGRST116') throw error;
-      setProfile(data || {
-        id: user.id,
-        email: user.email || '',
-        full_name: '',
-        phone: '',
-        address: '',
-        city: '',
-        state: '',
-        zip_code: ''
-      });
+      const saved = localStorage.getItem(`profile_${user.id}`);
+      if (saved) {
+        setProfile(JSON.parse(saved));
+      } else {
+        setProfile({
+          id: user.id,
+          email: user.email || '',
+          full_name: user.user_metadata?.full_name || '',
+          phone: '',
+          address: '',
+          city: '',
+          state: '',
+          zip_code: ''
+        });
+      }
     } catch (error: any) {
       toast({ title: "Error", description: error.message, variant: "destructive" });
     } finally {
@@ -66,20 +64,7 @@ const UserProfile = () => {
 
     setSaving(true);
     try {
-      const { error } = await supabase
-        .from('profiles')
-        .upsert({
-          id: user.id,
-          email: profile.email,
-          full_name: profile.full_name,
-          phone: profile.phone,
-          address: profile.address,
-          city: profile.city,
-          state: profile.state,
-          zip_code: profile.zip_code
-        });
-
-      if (error) throw error;
+      localStorage.setItem(`profile_${user.id}`, JSON.stringify(profile));
       toast({ title: "Success", description: "Profile updated successfully" });
     } catch (error: any) {
       toast({ title: "Error", description: error.message, variant: "destructive" });

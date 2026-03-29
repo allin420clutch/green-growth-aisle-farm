@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Sprout, Menu, X, User } from "lucide-react";
+import { Globe, Menu, X, User } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import CartDrawer from "./cart/CartDrawer";
@@ -22,9 +22,9 @@ const Header = () => {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
-              <Sprout className="h-8 w-8 text-farm-green-500" />
+              <Globe className="h-8 w-8 text-farm-green-500" />
               <span className="font-playfair text-2xl font-bold text-farm-green-700">
-                Farm Fresh
+                Homestead Harvest
               </span>
             </Link>
 
@@ -34,13 +34,13 @@ const Header = () => {
                 Home
               </Link>
               <Link to="/products" className="text-farm-brown-600 hover:text-farm-green-600 transition-colors">
-                Products
+                Market
               </Link>
-              <Link to="/#about" className="text-farm-brown-600 hover:text-farm-green-600 transition-colors">
-                About
+              <Link to="/#providers" className="text-farm-brown-600 hover:text-farm-green-600 transition-colors">
+                Live Providers
               </Link>
-              <Link to="/#contact" className="text-farm-brown-600 hover:text-farm-green-600 transition-colors">
-                Contact
+              <Link to="/#experts" className="text-farm-brown-600 hover:text-farm-green-600 transition-colors">
+                Experts
               </Link>
             </nav>
 
@@ -93,21 +93,21 @@ const Header = () => {
                   className="text-farm-brown-600 hover:text-farm-green-600 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Products
+                  Market
                 </Link>
                 <Link
-                  to="/#about"
+                  to="/#providers"
                   className="text-farm-brown-600 hover:text-farm-green-600 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  About
+                  Live Providers
                 </Link>
                 <Link
-                  to="/#contact"
+                  to="/#experts"
                   className="text-farm-brown-600 hover:text-farm-green-600 transition-colors"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Contact
+                  Experts
                 </Link>
               </div>
             </nav>

@@ -40,7 +40,7 @@ const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose }) => {
     setLoading(true);
     try {
       await signUp(email, password, fullName);
-      toast({ title: "Account created!", description: "Please check your email to verify your account." });
+      toast({ title: "Account created!", description: "You are now signed in." });
       onClose();
     } catch (error: any) {
       toast({ title: "Error", description: error.message, variant: "destructive" });

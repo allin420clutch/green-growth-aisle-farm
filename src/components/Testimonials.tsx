@@ -2,26 +2,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 
 const Testimonials = () => {
-  const testimonials = [
-    {
-      name: "Sarah Mitchell",
-      location: "Local Food Enthusiast",
-      text: "The produce from Hearth & Harvest is absolutely incredible! You can truly taste the difference that care and quality makes. My family won't shop anywhere else.",
-      rating: 5
-    },
-    {
-      name: "David Chen",
-      location: "Home Gardener",
-      text: "Their heirloom seeds have transformed my garden. The germination rates are excellent and the varieties are unique. Plus, their growing tips are invaluable!",
-      rating: 5
-    },
-    {
-      name: "Maria Rodriguez",
-      location: "Restaurant Owner",
-      text: "As a chef, I depend on Hearth & Harvest for the freshest ingredients. Their produce elevates every dish and my customers notice the difference.",
-      rating: 5
-    }
-  ];
+  // Simulated data removed
+  const testimonials: any[] = [];
 
   return (
     <section className="py-16 bg-farm-green-50">

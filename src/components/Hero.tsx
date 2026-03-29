@@ -9,41 +9,44 @@ const Hero = () => {
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
+          backgroundImage: `url('https://images.unsplash.com/photo-1466692476877-33eaac14800c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
         }}
       >
-        <div className="absolute inset-0 bg-farm-green-900/20"></div>
+        <div className="absolute inset-0 bg-farm-green-900/40"></div>
       </div>
 
       {/* Content */}
-      <div className="relative z-10 text-center max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
-          From Our Farm to Your Table & Garden
+      <div className="relative z-10 text-center max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h1 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)]">
+          The Global Heirloom Seed, Bulb & Plant Market
         </h1>
         
-        <p className="text-xl md:text-2xl text-farm-cream-100 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in">
-          Discover locally sourced fresh produce and premium quality seeds, 
-          cultivated with care and delivered with love.
+        <p className="text-xl md:text-2xl text-farm-cream-100 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in drop-shadow-md">
+          Connect with dynamic, real-time providers worldwide. Source premium heirloom seeds, 
+          exotic bulbs, and vibrant plants, all curated by elite planting experts.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-scale-in">
           <Button 
             size="lg" 
-            className="rounded-full bg-farm-green-600 hover:bg-farm-green-700 text-white px-8 py-3 text-lg font-medium transition-all duration-300 hover:scale-105"
-            onClick={() => navigate('/products?category=produce')}
+            className="rounded-full bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 text-lg font-medium transition-all duration-300 hover:scale-105"
+            onClick={() => navigate('/products?category=seeds')}
           >
-            Shop Fresh Produce
+            Enter Market
           </Button>
           <Button 
             size="lg" 
             variant="outline" 
             className="rounded-full border-2 border-white text-white hover:bg-white hover:text-farm-green-700 px-8 py-3 text-lg font-medium transition-all duration-300 hover:scale-105"
-            onClick={() => navigate('/products?category=seeds')}
+            onClick={() => {
+              const el = document.getElementById('providers');
+              el?.scrollIntoView({ behavior: 'smooth' });
+            }}
           >
-            Explore Seeds
+            Find Live Providers
           </Button>
         </div>
       </div>
